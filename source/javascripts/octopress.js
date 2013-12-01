@@ -116,10 +116,10 @@ function renderDeliciousLinks(items) {
   $('#delicious').html(output);
 }
 
-$.domReady(function() {
-  testFeatures();
-  wrapFlashVideos();
-  flashVideoFallback();
+$(function() {
+//  testFeatures();
+//  wrapFlashVideos();
+//  flashVideoFallback();
   addCodeLineNumbers();
   getNav();
   addSidebarToggler();

@@ -1,6 +1,6 @@
 // aharris colors vvvvvvvv
 $gray: #545454 !default;
-$lightGray: #ccc !default;
+$lightGray: #eee !default;
 $brick: #d04e38 !default;
 $darkBrick: #943221 !default;
 $lightBrick: #e8704b !default;
@@ -8,15 +8,18 @@ $white: #fff !default;
 $black: #000 !default;
 $yellow: #ffeb90 !default;
 
+// eanakashima colors vvvvvvvv
+$darkGray: #444;
+
 //original colors vvvvvvv
 
 $noise-bg: image-url('noise.png') top left !default;
 $img-border: inline-image('dotted-border.png');
 
 // Main Link Colors
-$link-color: $yellow;
+$link-color: $lightBrick;
 $link-color-hover: $darkBrick !default;
-$link-color-visited: $yellow;
+$link-color-visited: $brick;
 $link-color-active: $yellow;
 
 // Main Section Colors
@@ -24,7 +27,7 @@ $main-bg: #f8f8f8 !default;
 $page-bg: #252525 !default;
 $article-border: #eeeeee !default;
 
-$header-bg: #fff !default;
+$header-bg: $brick !default;
 $header-border: lighten($header-bg, 15) !default;
 $subtitle-color: #222 !default;
 
@@ -37,24 +40,8 @@ $nav-bg: #d74c21 !default;
 $nav-color: darken($nav-bg, 38) !default;
 $nav-color-hover: darken($nav-color, 25) !default;
 $nav-placeholder: desaturate(darken($nav-bg, 10), 15) !default;
-// $nav-border: darken($nav-bg, 10) !default;
-// $nav-border-top: lighten($nav-bg, 15) !default;
-// $nav-border-bottom: darken($nav-bg, 25) !default;
-// $nav-border-left: darken($nav-bg, 11) !default;
-// $nav-border-right: lighten($nav-bg, 7) !default;
 
-/* Sidebar colors */
-$sidebar-bg: $darkBrick !default;
-$sidebar-link-color: $white !default;
-$sidebar-link-color-hover: $darkBrick !default;
-$sidebar-link-color-active: $darkBrick !default;
-$sidebar-color: change-color(mix($text-color, $sidebar-bg, 80), $hue: hue($sidebar-bg), $saturation: saturation($sidebar-bg)/2) !default;
-$sidebar-border: desaturate(darken($sidebar-bg, 7), 10) !default;
-$sidebar-border-hover: darken($sidebar-bg, 7) !default;
-$sidebar-link-color-subdued: lighten($sidebar-color, 20) !default;
-$sidebar-link-color-subdued-hover: $sidebar-link-color-hover !default;
-$twitter-status-link: lighten($sidebar-link-color-subdued, 15) !default;
-
+/* Footer */
 $footer-color: #888 !default;
 $footer-bg: #ccc !default;
 $footer-bg-front: image-url('noise.png') !default;
@@ -73,9 +60,6 @@ $page-border-bottom: darken($footer-bg, 5) !default;
 a {
   @include link-colors($link-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $link-color-visited, $active: $link-color-active);
 }
-aside.sidebar a {
-  @include link-colors($sidebar-link-color, $hover: $sidebar-link-color-hover, $focus: $sidebar-link-color-hover, $active: $sidebar-link-color-active);
-}
 a {
   @include transition(color .3s);
 }
@@ -83,12 +67,7 @@ a {
 html {
   background: $lightGray;
 }
+
 body {
-  > div {
-    background: $brick;
-    > div {
-      background: $brick;
-      // border-right: 1px solid $sidebar-border;
-    }
-  }
+  background: $white;
 }

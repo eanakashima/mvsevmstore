@@ -1,5 +1,71 @@
-@import "sidebar/base";
-@import "sidebar/twitter";
-@import "sidebar/googleplus";
-@import "sidebar/pinboard";
-@import "sidebar/delicious";
+// .side-shadow-border {
+//   @include box-shadow(lighten($sidebar-bg, 5) 0 1px);
+// }
+aside.sidebar {
+  overflow: hidden;
+  color: $darkGray;
+  padding-left: 30px;
+  a {
+    @extend .force-wrap;
+    text-decoration: none;
+  }
+  section {
+    @extend .sans;
+    font-size: 1em;
+    line-height: 1.4em;
+    margin-bottom: 1.5em;
+    h1 {
+      margin: 1.5em 0 0;
+      padding-bottom: .2em;
+      + p {
+        padding-top: .4em;
+      }
+    }
+  }
+  img {
+    @extend .flex-content;
+    @extend .basic-alignment;
+    @include shadow-box($border: #fff .3em solid);
+  }
+  ul {
+    margin-bottom: 0.5em;
+    margin-left: 0;
+  }
+  li {
+    list-style: none;
+    padding: .5em 0 0 0;
+    margin: 0;
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .search {
+    border: none;
+    padding: .5em .5em;
+    font-size: .85em;
+    font-family: $sans;
+    line-height: 1.1em;
+    width: 80%;
+    background-color: $lightGray;
+    border: 1px solid $lightBrick;
+    color: #444;
+    &:focus {
+      background-color: $white;
+      outline: none;
+    }
+  }
+}
+
+$sidebar-border: $gray;
+
+@media only screen and (min-width: 768px) {
+  .sidebar-border {
+    outline: none;
+    position: absolute; right: -10px; top: 0; bottom: 0;
+    display: inline-block;
+    text-decoration: none;
+    width: 9px;
+    cursor: pointer;
+    @include background(linear-gradient(left, rgba($sidebar-border, .2), rgba($sidebar-border, 0)));
+  }
+}

@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What to Say About JavaScript - MVSEVMSTORE</title>
+  <meta name="author" content="e.a.nakashima">
+
+  
+  <meta name="description" content="When I decide whether or not to use the latest javascript tool/library/framework,
+I first look at what it does — what the features are. But after &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <!--<script src="/javascripts/modernizr-2.0.js"></script>-->
+  <!--<script src="/javascripts/ender.js"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MVSEVMSTORE" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body >
+  <header role="banner"><hgroup>
+    <!--<img src="/images/ah_frame_transparent.png" />-->
+  <h1><a href="/">MVSEVMSTORE</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What to Say About JavaScript</h1>
+    
+  </header>
+
+
+
+
+
+<div class="entry-content"><p>When I decide whether or not to use the latest javascript tool/library/framework,
+I first look at what it <em>does</em> — what the features are. But after that, there are
+a number of other factors that influence my decision. I never like hearing people
+boil these things down to &ldquo;Ember sucks&rdquo; or &ldquo;Underscore is useless,&rdquo; so I&rsquo;ve tried
+to come up with a more precise way to describe what I like and don&rsquo;t. I talk
+about what the thing provides on three different axes: convention, abstraction,
+and sugar.</p>
+
+<ul>
+<li><p><strong>Convention</strong>: does it provide and enforce conventions for writing
+and organizing my code? Are these conventions clear, easy to pick up, and easy
+to work with?</p></li>
+<li><p><strong>Abstraction</strong>: does it isolate me from details and platform
+quirks I don&rsquo;t care about? Is working with the abstraction layer usually more
+expressive and convenient than the alternative? Does it allow you to work at a
+more consistent level of abstraction?</p></li>
+<li><p><strong>Sugar</strong>:  does it make it fast and pretty for me to write the code
+I need to write? Does it offer helpers that make common problems less irritating?</p></li>
+</ul>
+
+
+<h2>So, Coffeescript.</h2>
+
+<p>Coffeescript is probably the best example of a tool I wish I&rsquo;d applied these
+axes to. I had a bad introduction to coffeescript, watching rubyists try to make
+it work like ruby on an older application where only a suite of flaky Jasmine
+tests was in coffeescript and trying to find the source line-number of a
+failing test was a perennial nuisance. But I think the bigger problem was that I
+had the wrong expectations for how coffeescript was going to help me. If I&rsquo;d
+just asked about these three different aspects, I would have figured it out a
+lot sooner.</p>
+
+<h3>Convention</h3>
+
+<p>While coffeescript keeps most of the flexibility of javascript and doesn&rsquo;t
+provide a large number of new conventions, the ones it does encourage are
+essentials that go a long way toward keeping sanity in a js-heavy application.</p>
+
+<h4>Discourage globals</h4>
+
+<p>First, coffeescript discourages the use of globals by wrapping every file in an
+immediately-executing function. While nothing prevents you from adding variables
+to the global scope, the small barrier of needing to explicitly make a variable
+global is enough to encourage me to find better ways to share state between features.</p>
+
+<h4>Encourage a single way to do &ldquo;classes&rdquo;</h4>
+
+<p>It&rsquo;s always been possible to simulate classes and class-based inheritance in
+javascript, but the sheer number of different ways to do it makes it daunting,
+especially on large teams or in big applications. I&rsquo;ve seen a lot of projects
+skip &ldquo;classes&rdquo; entirely rather than incur the cost of choosing and evangelizing
+one right way to do them. Coffeescript gives you one simple way to do classes,
+and they work in approximately the way people expect them to.</p>
+
+<h3>Abstraction</h3>
+
+<p>Abstraction is the axis where most of my coffeescript confusion originated.
+Visually, coffeescript looks a bit like python or ruby, and I think this lead me
+(and many developers I&rsquo;ve worked with) to assume that coffeescript would
+abstract away a lot of the quirks of javascript and let you write in some sort
+of dynamically-typed esperanto. But coffeescript isn&rsquo;t heavy-handed enough to pull
+this off (and now I agree that it&rsquo;s probably a good thing).</p>
+
+<p>I still think in javascript regularly when I write coffeescript. One
+example: this common case where you decide whether to use the <code>?</code> operator based
+on whether you want to ask if a value is falsy or whether it&rsquo;s null-like.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="c1"># won&#39;t execute if length is 0</span>
+</span><span class='line'>  <span class="nx">doStuff</span><span class="p">()</span> <span class="k">if</span> <span class="nx">myElement</span><span class="p">.</span><span class="nx">length</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># will execute if length is 0</span>
+</span><span class='line'>  <span class="nx">doStuff</span><span class="p">()</span> <span class="k">if</span> <span class="nx">myElement</span><span class="p">.</span><span class="nx">length</span><span class="o">?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;m glad to have the flexibility to do both, but coffeescript doesn&rsquo;t change the
+fact that I need to understand the difference.</p>
+
+<h3>Sugar</h3>
+
+<p>This is the other place where coffeescript shines, of course. I think of
+javascript as relatively simple, so I didn&rsquo;t realize how much I&rsquo;d wanted a sugar
+layer on top of it, but now that I have it, I&rsquo;m pleased about all those minutes
+I save not typing <code>var</code> and <code>function</code>.</p>
+
+<p>The loop comprehension feature, while easy to abuse, is a particularly pleasing
+example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// javascript</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="s2">&quot;nav&quot;</span><span class="p">,</span> <span class="s2">&quot;sidebar&quot;</span><span class="p">,</span> <span class="s2">&quot;main&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">foods</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">id</span> <span class="o">=</span> <span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">id</span> <span class="o">!==</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">print</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>becomes</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># coffeescript</span>
+</span><span class='line'><span class="nv">ids = </span><span class="p">[</span><span class="s">&quot;top&quot;</span><span class="p">,</span> <span class="s">&quot;nav&quot;</span><span class="p">,</span> <span class="s">&quot;sidebar&quot;</span><span class="p">,</span> <span class="s">&quot;main&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">print</span> <span class="nx">id</span> <span class="k">for</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">ids</span> <span class="k">when</span> <span class="nx">id</span> <span class="o">isnt</span> <span class="s">&quot;main&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Other javascript things</h2>
+
+<p>With these axes, I find that it&rsquo;s a lot easier to say what I like and don&rsquo;t like
+about other javascript tools &amp; libraries. Underscore is great because it
+provides sugary utility functions and nothing else. jQuery is an amazing
+abstraction layer on top of different DOM implementations, but it doesn&rsquo;t provide
+much in the way of conventions. And people get frustrated because they work
+with jQuery in projects where <em>nothing</em> is providing a convention layer. Which,
+incidentally, is an easier problem to talk about than the problem where jQuery
+just &ldquo;sucks.&rdquo;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">e.a.nakashima</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-25T17:18:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2014</time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript/" data-via="" data-counturl="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/25/sunset-testing-for-short-lived-code/" title="Previous Post: Sunset Testing for Short-Lived Code">&laquo; Sunset Testing for Short-Lived Code</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/03/just-enough-web-perf/">Just Enough Web Perf</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      <span class="sidebar-border"></span>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - e.a.nakashima -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+</html>

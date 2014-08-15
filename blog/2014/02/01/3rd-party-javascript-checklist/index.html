@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>3rd Party Javascript Checklist - MVSEVMSTORE</title>
+  <meta name="author" content="e.a.nakashima">
+
+  
+  <meta name="description" content="I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s Third-Party Javascript
+and would recommend it to anyone who is looking to build their front-end &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <!--<script src="/javascripts/modernizr-2.0.js"></script>-->
+  <!--<script src="/javascripts/ender.js"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MVSEVMSTORE" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body >
+  <header role="banner"><hgroup>
+    <!--<img src="/images/ah_frame_transparent.png" />-->
+  <h1><a href="/">MVSEVMSTORE</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">3rd Party Javascript Checklist</h1>
+    
+  </header>
+
+
+
+
+
+<div class="entry-content"><p>I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s <a href="http://thirdpartyjs.com/">Third-Party Javascript</a>
+and would recommend it to anyone who is looking to build their front-end
+expertise, not just to those working on third-party scripts.</p>
+
+<p>One thing the book doesn’t provide, but that I found myself wanting, was a short
+checklist to run through while evaluating vendors or scripts. So here’s my stab
+at that, with some of my own concerns mixed in with ideas from the book. The
+book has thorough, detailed info on many of these topics, particularly security,
+async loading, and deployment, so if any of these leave you with questions,
+check it out.</p>
+
+<h2>Third Party Javascript Checklist</h2>
+
+<ol>
+<li><p>Will it be served minified &amp; compressed? Will there also be an expanded,
+readable source for developers to reference?</p></li>
+<li><p>Is an https version available? Will all related resources be served over
+https?</p></li>
+<li><p>Is it deployed in a performant way?</p>
+
+<ul>
+<li>Is it gzipped?</li>
+<li>Does it have HTTP cache headers, set as long as sensible?</li>
+<li>Is it served from a CDN?</li>
+</ul>
+</li>
+<li><p>Does it work async? Can it be loaded both with a standard script tag and with
+a script loader? Many tag-management solutions force async loading of
+third-party scripts. Relying on document.write or expecting dependencies to load
+in a particular order may make a script unusable (or unpalatable) for some site
+owners.</p></li>
+<li><p>Does it add only one variable to the global scope?</p>
+
+<ul>
+<li>Bonus: if the whole script can run inside an anonymous function, it may
+add zero variables to the global scope.</li>
+<li>For widgets that have a visual component: does it namespace all styles
+under a widget-specific ID?</li>
+</ul>
+</li>
+<li><p>If it requires a library or framework, does it load the library namespaced
+inside itself, and with no-conflict mode enabled, if applicable? Or, if it
+depends on the host site to provide dependencies, is there clear documentation
+of what they are and which versions are supported?</p></li>
+<li><p>Is it as secure as it can be? Third-party scripts can be implicated in most
+of the same client-side security issues as first-party scripts. There’s a
+thousand different dimensions to this one, but it’s worth taking one last chance
+to look out for common problems, like eval-ing user or publisher input, adding
+sensitive data to cookies or local storage, and sending user data in the clear.</p></li>
+<li><p>How is the script&rsquo;s performance monitored? Is there monitoring for errors?</p></li>
+<li><p>Is there enough documentation? Adequate documentation should show how to
+include the script and clearly describe what it will do. Ideally, the
+documentation will show how to add the script both as a one-liner (script tag)
+and with an async loader. The documentation should also state what browsers and
+versions are supported. Does it work on a phone? Does it work in IE? Does it
+work in IE <em>6</em>?</p></li>
+</ol>
+
+
+<p>Listed out, these requirements seem fairly basic, but it’s the rare third party
+that provides them all. While developers are often roped into working with
+third-party scripts that are less than ideal, it’s a good idea to at least raise
+the issues with the provider and your own company. Many of these items don’t
+take much to accommodate — customers and users just don’t ask for them enough.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">e.a.nakashima</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T16:51:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist/" data-via="" data-counturl="http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/03/just-enough-web-perf/" title="Previous Post: Just Enough Web Perf">&laquo; Just Enough Web Perf</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/25/sunset-testing-for-short-lived-code/" title="Next Post: Sunset Testing for Short-Lived Code">Sunset Testing for Short-Lived Code &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/03/just-enough-web-perf/">Just Enough Web Perf</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      <span class="sidebar-border"></span>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - e.a.nakashima -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+</html>

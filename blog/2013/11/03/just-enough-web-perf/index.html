@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Just Enough Web Perf - MVSEVMSTORE</title>
+  <meta name="author" content="e.a.nakashima">
+
+  
+  <meta name="description" content="How to get started with web performance optimization in five steps At ModCloth, I was lucky enough to have dedicated time to focus on web
+performance &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <!--<script src="/javascripts/modernizr-2.0.js"></script>-->
+  <!--<script src="/javascripts/ender.js"></script>-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MVSEVMSTORE" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body >
+  <header role="banner"><hgroup>
+    <!--<img src="/images/ah_frame_transparent.png" />-->
+  <h1><a href="/">MVSEVMSTORE</a></h1>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Just Enough Web Perf</h1>
+    
+  </header>
+
+
+
+
+
+<div class="entry-content"><h1>How to get started with web performance optimization in five steps</h1>
+
+<p>At ModCloth, I was lucky enough to have dedicated time to focus on web
+performance optimization. I spent a full month totally focused on web perf and a
+few months after that with a dedicated percentage of my queue set aside for perf
+work. With this amount of time, my team was able to clean up thousands of lines
+of legacy javascript &amp; css, update backend settings, and shave more than 500 ms
+off median load times for top pages.</p>
+
+<p>Since then, I’ve been spread a bit more thin, and I’ve been a bit intimidated by
+the idea of trying to work web perf into the queue one story at a time.
+Performance optimization can seem like a rabbit-hole you can fall down and never
+get back out of — like work that&rsquo;s never done. However, I know from my past
+experience that it’s possible to bite off a week of web perf work, make an
+impact, and get back to other business, so I thought I’d sketch out some notes
+on how to do that.</p>
+
+<p>Here’s a rough outline for how to do a meaningful web performance optimization
+in five steps. The goal of this is &ldquo;minimum viable web perf” — just enough
+optimization to create a user-perceived performance improvement on your site and
+get everyone on your team thinking about performance.</p>
+
+<h2>Part 1: Collect metrics!</h2>
+
+<p>If you don&rsquo;t currently collect performance metrics, stop everything and start
+here. I (and most of the engineers I&rsquo;ve worked with) always want to jump right
+in and start optimizing, which is a nice impulse but a horrible idea. For one,
+without a good way to track and quantify performance, you can’t really have
+goals or confirm that performance is improving. For two, while engineers always
+have a gut feeling for what could be faster (and qualitatively, they’re usually
+right), those gut instincts (mine included) rarely point to the highest-impact
+optimizations first.</p>
+
+<p>Metrics have other jobs too, once work gets started — they’ll help keep everyone
+motivated and also help identify when it makes sense to <em>stop</em> optimizing. Most
+projects hit a tipping point after a few weeks or months where they&rsquo;ve burned
+through all the highest-impact optimizations, and the same amount of work starts
+to yield fewer returns. At that point, particularly on a small team or in a
+young company, it may make sense to switch to other work.</p>
+
+<h3>Choosing Tools</h3>
+
+<p>While you can nerd out over metrics forever, I’ve found that the only absolute must-haves are two kinds of data: high-level data collected from real users (RUM) and detailed data that will show <em>how</em> components load. (This second type of data is typically &lsquo;synthetic:&rsquo; collected on your local pc or with tests you run on a specific server.) The real user data will help you verify that you&rsquo;re actually getting faster, and the detailed data will help you identify what points are slow so you know where to spend your time optimizing.</p>
+
+<p>For RUM data, some top choices:</p>
+
+<ul>
+<li><strong>Soasta mPulse</strong> (formerly LogNormal): awesome client-side real-user metrics
+with histograms, browser stats, and the ability to tag pages into groups.</li>
+<li><strong>New Relic:</strong> great for Rails apps; provides both front-end and back-end
+metrics.</li>
+<li><strong>Google Analytics:</strong> collects client-side real-user perf data by default. The
+charts aren’t the most beautiful, but unless your site has massive traffic,
+it’s FREEEEE.</li>
+</ul>
+
+
+<p>For synthetic data, <strong>Web Page Test</strong> is a great free tool that will give you an
+incredibly detailed breakdown of your front-end loading and rendering. Visit
+<a href="http://webpagetest.org">webpagetest.org</a>, run a few tests — from various
+locations and browsers — on your most popular pages and save the results so you
+have a record of where you started. You can always screen-shot or save the page,
+but WebPageTest will also let you export results as a HTTP Archive or .har file,
+a data format that will let you look at loading in detail later.</p>
+
+<h4>First Intermission:</h4>
+
+<p>At this point, it’s good to take a moment and decide if a given site or app is
+truly slow enough to warrant an optimization. Web Page Test is great for this —
+you can run tests from a handful of geographic locations on major pages, <em>and</em>
+you can do this same testing on your competitors. Depending on the nature of
+your application (and possibly your competition), you may be able to skip
+optimizing for now.</p>
+
+<h3>Part 2: Find high-impact optimizations</h3>
+
+<p>It’s easy for teams to fall into the habit of doing cargo cult performance
+optimizations. For this reason, it’s essential to do some audits and write up a
+prioritized list. This exercise was the only thing that prevented my team from
+spending two weeks to enable full-page caching for a popular page of the site —
+an optimization that sounded like a great idea, but wasn’t needed for
+scalability and would have shaved only a few milliseconds off response times.</p>
+
+<p>Start by auditing the 2-3 most popular pages of the site to see how the pages
+perform:</p>
+
+<ol>
+<li><p>Run YSlow and PageSpeed Insights. These tools audit pages for performance
+best practices and spit out a list of recommendations, grouped by priority.</p></li>
+<li><p>Take a look at your time-to-first-byte metrics on top pages. For most sites,
+performance is 80% front-end and 20% back-end, but If it’s taking two seconds
+to get the first byte of content to your users, you may need to start with
+back-end optimizations first.</p></li>
+<li><p>Find slow or blocking resources. Web Page Test will provide you with a
+waterfall diagram that will let you see what&rsquo;s taking a long time, what
+scripts consume lots of CPU &amp; memory while they run, and what&rsquo;s blocking
+other resources from downloading. Take note of these and add them to your
+ list for Part Four.</p></li>
+</ol>
+
+
+<h3>Part 3: Flip all the switches</h3>
+
+<p>YSlow and PageSpeed will probably identify some optimizations that are
+essentially configuration changes. It usually makes sense to start with these,
+since they&rsquo;ll provide the most bang for the buck. Changes like gzipping CSS &amp; JS
+files, adding or increasing file caching headers, or adding domain sharding for
+images can be done once &amp; kept in place with minimal maintenance, and they can
+result in noticeable performance improvements.</p>
+
+<h4>Second Intermission:</h4>
+
+<p>If you’ve identified a ton of configuration changes and slow points, and you are
+wondering how to fit them all in, it may be time to look into tools like
+mod_pagespeed, a web server module that will sit in front of your app and apply
+a lot of performance best practices for you (e.g. minifying and compressing text
+files and images). A team working full-time on web performance can probably do a
+better job than mod_pagespeed, but if you have a relatively simple app and don&rsquo;t
+have a lot of resources to dedicated to web perf, it&rsquo;s a great way to cover the
+bases.</p>
+
+<p>If setting up mod_pagespeed seems intimidating, some CDNs and hosting providers
+(e.g. Cloudflare) can offer you a hosted solution that will provide similar
+features.</p>
+
+<h3>Part 4: Untangle something.</h3>
+
+<p>Dive in and untangle at least one slow or blocking resource you found in step #2.</p>
+
+<p>Chances are, you found at least one thing in Step #2 that was slowing down your
+page loads. Maybe all your javascripts load synchronously in the head of the
+page, and you want to move them down below your footer. Maybe you have a bunch
+of scripting that executes on DOM-ready, eating up memory and CPU. Maybe you
+have a zillion unused CSS selectors. Maybe you have some major application
+performance issues to untangle, like slow queries or n+1 queries. Grab whichever
+one of these is having the greatest impact on your users and untangle it.</p>
+
+<p>If you can, deploy the fix by itself so you can try to measure the impact it has
+on performance. Lather, rinse, repeat.</p>
+
+<h3>Part 5. Share</h3>
+
+<p>It’s easy to get stuck in Part 4 forever, but there’s an equally important step
+that you can’t skip: telling your team about the work you did, why it matters,
+and what they can do to help. Share load time numbers, compare yourself to
+competitors, and tell everyone about the work you did and what you want to do
+next. (Extra credit: use Charles or a similar tool to show everyone what your
+site looks like loading in Internet Explorer 8 over a low-end DSL connection,
+<em>then</em> share all your numbers.)</p>
+
+<p>Ultimately, everyone working on the site or app has an impact on performance,
+whether it&rsquo;s content owners adding images, marketers adding third-party web
+tools, or product managers planning new features. If you don&rsquo;t share your work
+with all of these people, they&rsquo;ll start to feel like adversaries who are slowing
+down the site with all of their tracking tags and photo carousels and social
+sharing widgets. But ultimately, everyone in your company can understand the
+benefits of a fast site — sharing web performance work with them goes a long way
+toward helping to keep them as partners.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">e.a.nakashima</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T15:52:00-08:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf/" data-via="" data-counturl="http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/02/01/3rd-party-javascript-checklist/" title="Next Post: 3rd Party Javascript Checklist">3rd Party Javascript Checklist &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/03/just-enough-web-perf/">Just Enough Web Perf</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      <span class="sidebar-border"></span>
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - e.a.nakashima -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+</html>

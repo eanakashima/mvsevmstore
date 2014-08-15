@@ -1,85 +1,23 @@
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>MVSEVMSTORE</title>
-  <meta name="author" content="e.a.nakashima">
-
-  
-  <meta name="description" content="When I decide whether or not to use the latest javascript tool/library/framework,
-I first look at what it does — what the features are. But after &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://eanakashima.github.io/mvsevmstore/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <!--<script src="/javascripts/modernizr-2.0.js"></script>-->
-  <!--<script src="/javascripts/ender.js"></script>-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="MVSEVMSTORE" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic' rel='stylesheet' type='text/css'>
-
-  
-
-</head>
-
-<body >
-  <header role="banner"><hgroup>
-    <!--<img src="/images/ah_frame_transparent.png" />-->
-  <h1><a href="/">MVSEVMSTORE</a></h1>
-</hgroup>
-
-</header>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[MVSEVMSTORE]]></title>
+  <link href="http://eanakashima.github.io/mvsevmstore/atom.xml" rel="self"/>
+  <link href="http://eanakashima.github.io/mvsevmstore/"/>
+  <updated>2014-08-14T17:52:40-07:00</updated>
+  <id>http://eanakashima.github.io/mvsevmstore/</id>
+  <author>
+    <name><![CDATA[e.a.nakashima]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a></h1>
-    
-  </header>
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-    <p class="meta">
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-25T17:18:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2014</time>
-      
-    </p>
-  
-  
-
-
-  <div class="entry-content"><p>When I decide whether or not to use the latest javascript tool/library/framework,
+  <entry>
+    <title type="html"><![CDATA[What to Say About JavaScript]]></title>
+    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript/"/>
+    <updated>2014-07-25T17:18:00-07:00</updated>
+    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript</id>
+    <content type="html"><![CDATA[<p>When I decide whether or not to use the latest javascript tool/library/framework,
 I first look at what it <em>does</em> — what the features are. But after that, there are
 a number of other factors that influence my decision. I never like hearing people
 boil these things down to &ldquo;Ember sucks&rdquo; or &ldquo;Underscore is useless,&rdquo; so I&rsquo;ve tried
@@ -216,45 +154,15 @@ much in the way of conventions. And people get frustrated because they work
 with jQuery in projects where <em>nothing</em> is providing a convention layer. Which,
 incidentally, is an easier problem to talk about than the problem where jQuery
 just &ldquo;sucks.&rdquo;</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a></h1>
-    
-  </header>
-
-
-  
-    <p class="meta">
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-25T16:40:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2014</time>
-      
-    </p>
-  
-  
-
-
-  <div class="entry-content"><p><em>Rachel Myers and I talked about Sunset Testing in our talks at O’Reilly’s
+  <entry>
+    <title type="html"><![CDATA[Sunset Testing for Short-Lived Code]]></title>
+    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/sunset-testing-for-short-lived-code/"/>
+    <updated>2014-07-25T16:40:00-07:00</updated>
+    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/sunset-testing-for-short-lived-code</id>
+    <content type="html"><![CDATA[<p><em>Rachel Myers and I talked about Sunset Testing in our talks at O’Reilly’s
 Fluent Conf 2014 and Front-End Ops Conf, and a number of people asked us if we
 had a blog post on the topic that they could share with their coworkers. We
 didn’t, so here it is, somewhat belatedly.</em></p>
@@ -407,45 +315,15 @@ have a reminder of what that code is, and you’ll be able to check with your
 team and see if you’re ready to remove it.</p>
 
 <p>Voila. One step closer to code that deletes itself.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a></h1>
-    
-  </header>
-
-
-  
-    <p class="meta">
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-01T16:51:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
-      
-    </p>
-  
-  
-
-
-  <div class="entry-content"><p>I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s <a href="http://thirdpartyjs.com/">Third-Party Javascript</a>
+  <entry>
+    <title type="html"><![CDATA[3rd Party Javascript Checklist]]></title>
+    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist/"/>
+    <updated>2014-02-01T16:51:00-08:00</updated>
+    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist</id>
+    <content type="html"><![CDATA[<p>I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s <a href="http://thirdpartyjs.com/">Third-Party Javascript</a>
 and would recommend it to anyone who is looking to build their front-end
 expertise, not just to those working on third-party scripts.</p>
 
@@ -509,45 +387,15 @@ that provides them all. While developers are often roped into working with
 third-party scripts that are less than ideal, it’s a good idea to at least raise
 the issues with the provider and your own company. Many of these items don’t
 take much to accommodate — customers and users just don’t ask for them enough.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/03/just-enough-web-perf/">Just Enough Web Perf</a></h1>
-    
-  </header>
-
-
-  
-    <p class="meta">
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-03T15:52:00-08:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
-      
-    </p>
-  
-  
-
-
-  <div class="entry-content"><h1>How to get started with web performance optimization in five steps</h1>
+  <entry>
+    <title type="html"><![CDATA[Just Enough Web Perf]]></title>
+    <link href="http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf/"/>
+    <updated>2013-11-03T15:52:00-08:00</updated>
+    <id>http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf</id>
+    <content type="html"><![CDATA[<h1>How to get started with web performance optimization in five steps</h1>
 
 <p>At ModCloth, I was lucky enough to have dedicated time to focus on web
 performance optimization. I spent a full month totally focused on web perf and a
@@ -705,90 +553,7 @@ down the site with all of their tracking tags and photo carousels and social
 sharing widgets. But ultimately, everyone in your company can understand the
 benefits of a fast site — sharing web performance work with them goes a long way
 toward helping to keep them as partners.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <form action="http://google.com/search" method="get">
-      <fieldset role="search">
-        <input type="hidden" name="q" value="site:eanakashima.github.io/mvsevmstore" />
-        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-      </fieldset>
-    </form>
-  
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/03/just-enough-web-perf/">Just Enough Web Perf</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-      <span class="sidebar-border"></span>
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - e.a.nakashima -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-
-</body>
-</html>
+</feed>

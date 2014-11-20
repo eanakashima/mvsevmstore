@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://eanakashima.github.io/mvsevmstore/sitemap.xml 
+Sitemap: http://mvsevmstore.org/sitemap.xml 

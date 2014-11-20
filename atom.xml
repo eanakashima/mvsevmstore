@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[MVSEVMSTORE]]></title>
-  <link href="http://eanakashima.github.io/mvsevmstore/atom.xml" rel="self"/>
-  <link href="http://eanakashima.github.io/mvsevmstore/"/>
-  <updated>2014-10-08T09:06:33-07:00</updated>
-  <id>http://eanakashima.github.io/mvsevmstore/</id>
+  <link href="http://mvsevmstore.org/atom.xml" rel="self"/>
+  <link href="http://mvsevmstore.org/"/>
+  <updated>2014-11-20T14:03:25-08:00</updated>
+  <id>http://mvsevmstore.org/</id>
   <author>
     <name><![CDATA[e.a.nakashima]]></name>
     
@@ -14,9 +14,9 @@
   
   <entry>
     <title type="html"><![CDATA[What to Say About JavaScript]]></title>
-    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript/"/>
+    <link href="http://mvsevmstore.org/blog/2014/07/25/what-to-say-about-javascript/"/>
     <updated>2014-07-25T17:18:00-07:00</updated>
-    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/what-to-say-about-javascript</id>
+    <id>http://mvsevmstore.org/blog/2014/07/25/what-to-say-about-javascript</id>
     <content type="html"><![CDATA[<p>When I decide whether or not to use the latest javascript tool/library/framework,
 I first look at what it <em>does</em> — what the features are. But after that, there are
 a number of other factors that influence my decision. I never like hearing people
@@ -159,9 +159,9 @@ just &ldquo;sucks.&rdquo;</p>
   
   <entry>
     <title type="html"><![CDATA[Sunset Testing for Short-Lived Code]]></title>
-    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/sunset-testing-for-short-lived-code/"/>
+    <link href="http://mvsevmstore.org/blog/2014/07/25/sunset-testing-for-short-lived-code/"/>
     <updated>2014-07-25T16:40:00-07:00</updated>
-    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/07/25/sunset-testing-for-short-lived-code</id>
+    <id>http://mvsevmstore.org/blog/2014/07/25/sunset-testing-for-short-lived-code</id>
     <content type="html"><![CDATA[<p><em>Rachel Myers and I talked about Sunset Testing in our talks at O’Reilly’s
 Fluent Conf 2014 and Front-End Ops Conf, and a number of people asked us if we
 had a blog post on the topic that they could share with their coworkers. We
@@ -320,9 +320,9 @@ team and see if you’re ready to remove it.</p>
   
   <entry>
     <title type="html"><![CDATA[3rd Party Javascript Checklist]]></title>
-    <link href="http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist/"/>
-    <updated>2014-02-01T16:51:00-07:00</updated>
-    <id>http://eanakashima.github.io/mvsevmstore/blog/2014/02/01/3rd-party-javascript-checklist</id>
+    <link href="http://mvsevmstore.org/blog/2014/02/01/3rd-party-javascript-checklist/"/>
+    <updated>2014-02-01T16:51:00-08:00</updated>
+    <id>http://mvsevmstore.org/blog/2014/02/01/3rd-party-javascript-checklist</id>
     <content type="html"><![CDATA[<p>I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s <a href="http://thirdpartyjs.com/">Third-Party Javascript</a>
 and would recommend it to anyone who is looking to build their front-end
 expertise, not just to those working on third-party scripts.</p>
@@ -392,9 +392,9 @@ take much to accommodate — customers and users just don’t ask for them enoug
   
   <entry>
     <title type="html"><![CDATA[Just Enough Web Perf]]></title>
-    <link href="http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf/"/>
-    <updated>2013-11-03T15:52:00-07:00</updated>
-    <id>http://eanakashima.github.io/mvsevmstore/blog/2013/11/03/just-enough-web-perf</id>
+    <link href="http://mvsevmstore.org/blog/2013/11/03/just-enough-web-perf/"/>
+    <updated>2013-11-03T15:52:00-08:00</updated>
+    <id>http://mvsevmstore.org/blog/2013/11/03/just-enough-web-perf</id>
     <content type="html"><![CDATA[<h1>How to get started with web performance optimization in five steps</h1>
 
 <p>At ModCloth, I was lucky enough to have dedicated time to focus on web

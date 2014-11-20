@@ -55,17 +55,3 @@ aside.sidebar {
     }
   }
 }
-
-$sidebar-border: $gray;
-
-@media only screen and (min-width: 768px) {
-  .sidebar-border {
-    outline: none;
-    position: absolute; right: -10px; top: 0; bottom: 0;
-    display: inline-block;
-    text-decoration: none;
-    width: 9px;
-    cursor: pointer;
-    @include background(linear-gradient(left, rgba($sidebar-border, .2), rgba($sidebar-border, 0)));
-  }
-}

@@ -11,9 +11,7 @@
     }
     footer { padding: 0; margin: 0;}
   }
-  h2 { display: none; }
   h1 {
-    color: $white;
     margin-bottom: .3em;
     font-size: 1.2em;
     a {
@@ -55,7 +53,6 @@
       text-align: right;
       left: 0em;
       top: 1.8em;
-      color: $white;
     }
     .year { display: none; }
     article {

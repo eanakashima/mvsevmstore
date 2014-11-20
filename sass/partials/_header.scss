@@ -1,11 +1,11 @@
 body > header {
   margin: 0 auto;
-  background: $header-bg;
+  border-bottom: 1px solid $header-bg;
   h1 {
     display: inline-block;
     margin: 0;
     a, a:visited, a:hover {
-      color: $darkGray;
+      color: $header-bg;
       text-decoration: none;
     }
   }
@@ -13,7 +13,7 @@ body > header {
     margin: .2em 0 0;
     font-family: $sans;
     font-size: 0.8em;
-      color: $darkGray;
+    color: $darkGray;
   }
   img {
     max-width: 100px;

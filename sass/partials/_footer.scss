@@ -1,8 +1,7 @@
 body > footer {
   @extend .sans;
   font-size: .8em;
-  color: $white;
-  background-color: $brick;
+  border-top: 1px solid $brick;
   position: relative;
   padding-top: 1em;
   padding-bottom: 1em;
@@ -10,6 +9,6 @@ body > footer {
   z-index: 1;
   p:last-child { margin-bottom: 0; }
   a, a:link, a:visited, a:hover, a:active {
-    color: $yellow;
+    text-decoration: none;
   }
 }

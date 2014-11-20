@@ -63,11 +63,3 @@ a {
 a {
   @include transition(color .3s);
 }
-
-html {
-  background: $lightGray;
-}
-
-body {
-  background: $white;
-}

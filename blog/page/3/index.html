@@ -7,8 +7,8 @@
   <meta name="author" content="e.a.nakashima">
 
   
-  <meta name="description" content="I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s Third-Party Javascript
-and would recommend it to anyone who is looking to build their front-end &hellip;">
+  <meta name="description" content="Rachel Myers and I talked about Sunset Testing in our talks at O’Reilly’s
+Fluent Conf 2014 and Front-End Ops Conf, and a number of people asked us if &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -55,7 +55,7 @@ and would recommend it to anyone who is looking to build their front-end &hellip
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/02/01/3rd-party-javascript-checklist/">3rd Party Javascript Checklist</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/07/25/sunset-testing-for-short-lived-code/">Sunset Testing for Short-Lived Code</a></h1>
     
   </header>
 
@@ -74,77 +74,166 @@ and would recommend it to anyone who is looking to build their front-end &hellip
   
 
 
-<time datetime="2014-02-01T16:51:00-08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
+<time datetime="2014-07-25T16:40:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2014</time>
       
     </p>
   
   
 
 
-  <div class="entry-content"><p>I’ve been enjoying Ben Vinegar &amp; Anton Kovalyov’s <a href="http://thirdpartyjs.com/">Third-Party Javascript</a>
-and would recommend it to anyone who is looking to build their front-end
-expertise, not just to those working on third-party scripts.</p>
+  <div class="entry-content"><p><em>Rachel Myers and I talked about Sunset Testing in our talks at O’Reilly’s
+Fluent Conf 2014 and Front-End Ops Conf, and a number of people asked us if we
+had a blog post on the topic that they could share with their coworkers. We
+didn’t, so here it is, somewhat belatedly.</em></p>
 
-<p>One thing the book doesn’t provide, but that I found myself wanting, was a short
-checklist to run through while evaluating vendors or scripts. So here’s my stab
-at that, with some of my own concerns mixed in with ideas from the book. The
-book has thorough, detailed info on many of these topics, particularly security,
-async loading, and deployment, so if any of these leave you with questions,
-check it out.</p>
+<p>When I write some javascript to work around a browser compatibility bug or some
+custom ruby to show different configurations for an A/B test, I always have to
+get past a bad feeling before checking it in. It helps to write a comment,
+something like “Workaround for an IE8 bug,” or “Delete this when we finish the
+navigation A/B test,” so it’s obvious when we can remove the code, but it
+always feels like a bit of a defeat just to have this code that we know is
+short-lived alongside our business logic that’s core to the domain.</p>
 
-<h2>Third Party Javascript Checklist</h2>
+<p>Of course, good code organization practices help — browser compatibility code
+can be moved into a “polyfills” directory and a good A/B framework can abstract
+most of the hurt out of your application — but there’s always a few files
+hanging around that you just <em>know</em> you’ll have to go back to in a few months.
+For those files, Sunset Tests might be the answer.</p>
 
-<ol>
-<li><p>Will it be served minified &amp; compressed? Will there also be an expanded,
-readable source for developers to reference?</p></li>
-<li><p>Is an https version available? Will all related resources be served over
-https?</p></li>
-<li><p>Is it deployed in a performant way?</p>
+<h2>Sunset Tests</h2>
 
-<ul>
-<li>Is it gzipped?</li>
-<li>Does it have HTTP cache headers, set as long as sensible?</li>
-<li>Is it served from a CDN?</li>
-</ul>
-</li>
-<li><p>Does it work async? Can it be loaded both with a standard script tag and with
-a script loader? Many tag-management solutions force async loading of
-third-party scripts. Relying on document.write or expecting dependencies to load
-in a particular order may make a script unusable (or unpalatable) for some site
-owners.</p></li>
-<li><p>Does it add only one variable to the global scope?</p>
+<p>Sunset Tests are tests that remind us to delete or at least revisit temporary
+code at some point in the future. I first got the idea from my long-time coworker
+<a href="http://github.com/sax">Eric Saxby</a>. We were pairing on a feature A/B test, and as the finishing
+touch, he added a test that would fail in a month or so and basically remind us,
+“Hey future us, remember that you hate all this A/B test code and want to delete
+it now.”  Turns out, there are more places this is useful than just A/B tests.
+My coworker/cospeaker <a href="http://github.com/rachelmyers">Rachel Myers</a> coined the term “Sunset Test” and I like it
+because it reminds me of all the time I’ll be able to spend on my beach vacation
+while everyone without sunset tests is busy wading through old
+weird <code>.js.erb</code> files trying to figure out what they do. Err, I mean, I like the
+tests because they remind you of when you can sunset your short-lived code.</p>
 
-<ul>
-<li>Bonus: if the whole script can run inside an anonymous function, it may
-add zero variables to the global scope.</li>
-<li>For widgets that have a visual component: does it namespace all styles
-under a widget-specific ID?</li>
-</ul>
-</li>
-<li><p>If it requires a library or framework, does it load the library namespaced
-inside itself, and with no-conflict mode enabled, if applicable? Or, if it
-depends on the host site to provide dependencies, is there clear documentation
-of what they are and which versions are supported?</p></li>
-<li><p>Is it as secure as it can be? Third-party scripts can be implicated in most
-of the same client-side security issues as first-party scripts. There’s a
-thousand different dimensions to this one, but it’s worth taking one last chance
-to look out for common problems, like eval-ing user or publisher input, adding
-sensitive data to cookies or local storage, and sending user data in the clear.</p></li>
-<li><p>How is the script&rsquo;s performance monitored? Is there monitoring for errors?</p></li>
-<li><p>Is there enough documentation? Adequate documentation should show how to
-include the script and clearly describe what it will do. Ideally, the
-documentation will show how to add the script both as a one-liner (script tag)
-and with an async loader. The documentation should also state what browsers and
-versions are supported. Does it work on a phone? Does it work in IE? Does it
-work in IE <em>6</em>?</p></li>
-</ol>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// A/B test testing</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">test</span><span class="p">(</span> <span class="err">“</span><span class="nx">homepage</span> <span class="nx">banner</span> <span class="nx">a</span><span class="o">/</span><span class="nx">b</span> <span class="nx">test</span> <span class="nx">is</span> <span class="nx">active</span><span class="err">“</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">today</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">testEndDate</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="err">“</span><span class="mi">2014</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">today</span> <span class="o">&lt;</span> <span class="nx">testEndDate</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ok</span><span class="p">(</span><span class="nx">activeABTests</span><span class="p">.</span><span class="nx">homepage</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ok</span><span class="p">(</span><span class="o">!</span><span class="nx">activeABTests</span><span class="p">.</span><span class="nx">homepage</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Listed out, these requirements seem fairly basic, but it’s the rare third party
-that provides them all. While developers are often roped into working with
-third-party scripts that are less than ideal, it’s a good idea to at least raise
-the issues with the provider and your own company. Many of these items don’t
-take much to accommodate — customers and users just don’t ask for them enough.</p>
+<p>My favorite use case for Sunset Tests is as a reminder for when we can pull out
+browser compatibility code we don’t need anymore. I’ve worked on a number of
+<em>very</em> large Ruby on Rails apps, and run into a lot of random shims &amp; browser
+hacks that <em>seem</em> like they might be dead but don’t definitively express their
+ability to be deleted. Here’s a good example: this <code>Array.prototype.indexOf</code>
+polyfill file. Unless you remember a lot about the dawn of ECMA-262, you might
+not know what this is for or whether or not you can take it out. Even if you
+<em>do</em> know what it does, do you remember <em>which</em> version of IE added native
+support for <code>[‘a’,’b’].indexOf(‘b’)</code>? I don’t. And I added this polyfill to the
+codebase.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">indexOf</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">searchElement</span><span class="p">,</span> <span class="nx">fromIndex</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">k</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 1. Let O be the result of calling ToObject passing</span>
+</span><span class='line'>    <span class="c1">//    the this value as the argument.</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;&quot;this&quot; is null or not defined&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="c1">//... continues for 150 lines</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So we can test it like so:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">test</span><span class="p">(</span> <span class="err">“</span><span class="nx">indexOf</span> <span class="nx">polyfill</span> <span class="nx">expired</span><span class="o">?</span><span class="err">&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">browserSupport</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">polyfill</span><span class="p">.</span><span class="nx">browserSupport</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">today</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">iE8Sunset</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">browserSupport</span><span class="p">[</span><span class="err">‘</span><span class="nx">ie</span><span class="o">-</span><span class="mi">8</span><span class="err">’</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">today</span> <span class="o">&lt;</span> <span class="nx">iE8Sunset</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ok</span><span class="p">(</span><span class="nx">polyfilled</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ok</span><span class="p">(</span><span class="o">!</span><span class="nx">polyfilled</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is best coupled with a config file that has all the important future dates
+you care about. Even if you don’t know the exact date in the future when you’ll
+drop support for, say, IE10, it’s worth setting up one of these. Add every
+browser version (or every reason for your temporary code), and the date when
+you’ll drop support, or the next date you want to think about the problem, if
+you don’t know when you’ll drop support. Six months is usually a decently good
+runway.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// check our browser analytics on these dates</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">browserSupport</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="err">“</span><span class="nx">safari</span><span class="o">-</span><span class="mf">5.0</span><span class="s2">&quot;: &quot;</span><span class="nx">June</span> <span class="mi">01</span> <span class="mi">2014</span><span class="s2">&quot;,</span>
+</span><span class='line'><span class="s2">  “ie-8&quot;</span><span class="o">:</span>       <span class="s2">&quot;June 01 2014&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">“</span><span class="nx">ie</span><span class="o">-</span><span class="mi">9</span><span class="s2">&quot;:       &quot;</span><span class="nx">January</span> <span class="mi">01</span> <span class="mi">2015</span><span class="err">&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now the cool part: six months from now, you’ll see this test failure, you’ll
+have a reminder of what that code is, and you’ll be able to check with your
+team and see if you’re ready to remove it.</p>
+
+<p>Voila. One step closer to code that deletes itself.</p>
 </div>
   
   
@@ -186,6 +275,10 @@ take much to accommodate — customers and users just don’t ask for them enoug
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/05/why-job-titles-matter-if-you-care-about-diversity/">Why Job Titles Matter If You Care About Diversity</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/07/25/what-to-say-about-javascript/">What to Say About JavaScript</a>
